@@ -35,6 +35,7 @@ ngx_http_add_location(locations, l2);
 
 ngx_queue_pprint(locations);
 ngx_queue_sort(locations, (q1, q2) => {
-  return q1.data.name <= q2.data.name;
+  console.log(q1);
+  return q1.data.name > q2.data.name;
 });
 ngx_queue_pprint(locations);
