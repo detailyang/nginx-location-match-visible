@@ -355,6 +355,7 @@ function ngx_http_create_locations_tree(locations, prefix) {
 
 
 function ngx_http_core_find_location(uri, static_locations, regex_locations, named_locations, track) {
+  let rc = null;
   let l = ngx_http_find_static_location(uri, static_locations, track);
   if (l) {
     if (l.exact_match) {
@@ -363,6 +364,7 @@ function ngx_http_core_find_location(uri, static_locations, regex_locations, nam
     if (l.noregex) {
       return l;
     }
+    rc = l;
   }
   if (regex_locations) {
     for (let i = 0 ; i < regex_locations.length; i ++) {
@@ -379,7 +381,7 @@ function ngx_http_core_find_location(uri, static_locations, regex_locations, nam
     }
   }
 
-  return null;
+  return rc;
 }
 
 

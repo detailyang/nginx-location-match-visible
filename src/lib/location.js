@@ -69,7 +69,7 @@ function parse(str) {
   while ( (result = regex.exec(str)) ) {
       indices.push(result.index);
   }
-  
+
   const locations = new Queue();
   ngx_queue_init(locations);
 
@@ -84,14 +84,14 @@ function parse(str) {
       const locationline = locationlines[0];
       const args = locationline.replace(/\s+/g, ' ').trim().split(' ');
       if (args.length == 1) {
-        const location = new Location(args[0]);      
+        const location = new Location(args[0]);
         ngx_http_add_location(locations, location);
       } else if (args.length == 2) {
-        const location = new Location(args[1]);      
-        
+        const location = new Location(args[1]);
+
         const type = args[0];
         switch(type) {
-          case '~': 
+          case '~':
             location.regex = true;
             break;
           case '=':
@@ -100,7 +100,7 @@ function parse(str) {
           case '^~':
             location.noregex = true;
             break;
-          case '@':           
+          case '@':
             location.named = true;
             break;
           case '~*':
@@ -111,13 +111,13 @@ function parse(str) {
             throw new Error(`only support "~ = ^~ @" but you "${locationline}" is ${type}`);
             break;
         }
-        
+
         ngx_http_add_location(locations, location);
       } else {
         throw new Error('nginx conf unknow location format');
       }
   }
-  
+
   return locations;
 }
 
@@ -130,11 +130,9 @@ function unserialize(location) {
   } else if (location.noregex) {
     return `location ^~ ${location.name}`;
   } else if (location.regex) {
-    return `location ~ ${location.name}`;
-  } else if (location.rcaseless) {
-    return `location ~* ${location.name}`;
+    return location.rcaseless ? `location ~* ${location.name}` : `location ~ ${location.name}`;
   } else {
-    return 'unknow:(';
+    return `location ${location.name}`;
   }
 }
 
