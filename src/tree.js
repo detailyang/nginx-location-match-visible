@@ -38,6 +38,9 @@ function static_locations_pprint_with_stage(stage, tracknodes, node, x, y, offse
     let type = "";
     if (node.exact) {
      type = "=";
+     if (node.inclusive) {
+      type = `${node.name} and ${type}`;
+     }
     } else {
         if (node.inclusive.noregex) {
           type = "^~";
@@ -120,14 +123,12 @@ module.exports = {
             alert(e.message);
             return e;
         }
-
         const regex_locations = [];
         const named_locations = [];
         const tracknodes = [];
 
         ngx_http_init_locations(locations, regex_locations, named_locations);
         const static_locations = ngx_http_init_static_location_trees(locations);
-
         /* set stage */
         const s = new Stage(ctx);
         s.setFont("20px Arial");

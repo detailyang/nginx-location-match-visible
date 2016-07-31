@@ -211,6 +211,7 @@ function ngx_http_init_static_location_trees(locations) {
   }
 
   ngx_http_join_exact_locations(locations);
+  const ngx_queue_pprint = require('./queue').ngx_queue_pprint;
   ngx_http_create_locations_list(locations, ngx_queue_head(locations));
 
   return ngx_http_create_locations_tree(locations, 0);
@@ -273,7 +274,7 @@ function ngx_http_join_exact_locations(locations) {
       if ((q.exact && x.exact) || (q.inclusive && x.inclusive)) {
         return -1;
       }
-      q.inclusive = x.inclusive;
+      lq.inclusive = lx.inclusive;
       ngx_queue_remove(x);
 
       continue;
@@ -387,12 +388,12 @@ function ngx_http_core_find_location(uri, static_locations, regex_locations, nam
 
 function ngx_http_find_static_location(uri, node, track) {
   let len = uri.length;
+  let rv = null;
 
   for (;;) {
     if (node == null) {
-      return null;
+      return rv;
     }
-
     if (track) track(node.inclusive ? node.inclusive.id : node.exact.id);
     let n = len <= node.len ? len : node.len;
     let rc = ngx_filename_cmp(uri, node.name, n);
@@ -403,6 +404,7 @@ function ngx_http_find_static_location(uri, node, track) {
     }
     if (len > node.len) {
       if (node.inclusive) {
+        rv = node.inclusive;
         node = node.tree;
         continue;
       }
