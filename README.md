@@ -59,7 +59,7 @@ Also, using the “=” modifier it is possible to define an exact match of URI 
 Let's explain something about this:
 
 1. the exact match is the best priority
-2. the prefix match is second is the second, but there are two type prefix match like `^~` and `/`, if you are ^~, nginx will skip regular match else it will continue to match all the regular match.
+2. the prefix match is the second priority, but there are two type prefix match like `^~` and `/`, if you are ^~, nginx will skip regular match else it will continue to match all the regular match.
 
 a little fake code as the following:
 
