@@ -98,14 +98,49 @@ location ~* \.(gif|jpg|jpeg)$ {
 * if we are requesting "/images/xxx", it will match `configuration D`, but never match regular location becasuse of ^~
 
 #Detail
-Let’s talk about the some data struct about nginx location match.
+Let’s talk about the something about nginx location data struct when nginx match location.
 
 Firstly Nginx will sort the location list by the order 
 
-`
-extra_match(alpha)->prefix(alpha)->regular(order write by conf)->named(alpha)->noname(order write by conf)
-`
-Then Nginx will move named and noname location from the list, because normal will not hit these location.
-Then Nginx will split regular location to signle list like the following.
+````
+extra_match(alpha order)->prefix(alpha order)->regular(order write by conf)->named(alpha order)->noname(order write by conf)
+````
+
+Then Nginx will move named and noname location from the list, because normal will not hit these location.    
+Then Nginx will split regular location to signle list like the following.    
 Then Nginx transform the location list only have match and prefix to a ternary tree like the following.
 
+![nginx location tree and regular location list](https://raw.githubusercontent.com/detailyang/nginx-location-match-visible/master/docs/images/nginxds.png)
+
+
+Contributing
+------------
+
+To contribute to ngx_http_updown, clone this repo locally and commit your code on a separate branch.           
+PS: PR Welcome :rocket: :rocket: :rocket: :rocket:
+
+This project consist of the three parts:
+
+* Parse the nginx conf:
+  nginx conf parser are not implement like compiler, it's just string  manipulate. And now it cannot support rewrite directive.
+* Construct the nginx static location tree、regular location list and Implement the nginx_find_location method:
+  it translate nginx c code to js code by manually
+
+* Render nginx match process:
+  now render the process is deal with by canvas api, it could be implmented better actually. 
+
+The code of this project is a little dirty but workaround. It's enough to help guys to know how to work when nginx match location.
+
+Wish it can help you as more as what I have learn from nginx code. :rocket: Thank You !!! :rocket:
+
+Author
+------
+
+> GitHub [@detailyang](https://github.com/detailyang)
+
+
+License
+-------
+ngx_http_updown is licensed under the [MIT] license.
+
+[MIT]: https://github.com/detailyang/ybw/blob/master/licenses/MIT
