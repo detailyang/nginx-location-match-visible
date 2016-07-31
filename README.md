@@ -20,7 +20,7 @@
 
 This project aims to help guys to understand how does nginx location match work. Wish you can learn something from this project :grin:
 
-#How
+#Rough
 
 In [Nginx Website](http://nginx.org/en/docs/http/ngx_http_core_module.html#location), it include these docs as the following:
 
@@ -93,8 +93,19 @@ location ~* \.(gif|jpg|jpeg)$ {
     [ configuration E ]
 }
 ````
-if we are requesting "/index.html", it will match
+* if we are requesting "/index.html", it will match `configureation B`.
+* if we are requesting "/1.jpg", it will find `configuration B` at first, then regular match `configuration E` finally.
+* if we are requesting "/images/xxx", it will match `configuration D`, but never match regular location becasuse of ^~
 
+#Detail
+Let’s talk about the some data struct about nginx location match.
 
+Firstly Nginx will sort the location list by the order 
 
-extra_match(alpha)->inclusive(alpha)->reg(location order)->name(alpha)->noname(location order)
+`
+extra_match(alpha)->prefix(alpha)->regular(order write by conf)->named(alpha)->noname(order write by conf)
+`
+Then Nginx will move named and noname location from the list, because normal will not hit these location.
+Then Nginx will split regular location to signle list like the following.
+Then Nginx transform the location list only have match and prefix to a ternary tree like the following.
+
