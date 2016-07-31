@@ -4,6 +4,7 @@
   "description": "nginx location match visible",
   "main": "server.js",
   "scripts": {
+    "build": "webpack --progress --verbose --colors --display-error-details",
     "test": "make test",
     "start": "node server.js"
   },
