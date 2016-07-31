@@ -117,9 +117,9 @@ Firstly Nginx will sort the location list by the order
 extra_match(alpha order)->prefix(alpha order)->regular(order write by conf)->named(alpha order)->noname(order write by conf)
 ````
 
-Then Nginx will move named and noname location from the list, because normal will not hit these location.    
-Then Nginx will split regular location to signle list like the following.    
-Then Nginx transform the location list only have match and prefix to a ternary tree like the following.
+Then Nginx will move named and noname location from the list, because normal request will not hit these location directly.    
+And Nginx will split regular location to signle list like the following.    
+Finally Nginx transform the location list only have match and prefix to a ternary tree like the following.
 
 ![nginx location tree and regular location list](https://raw.githubusercontent.com/detailyang/nginx-location-match-visible/master/docs/images/nginxds.png)
 
