@@ -1,0 +1,36 @@
+{
+  "name": "nginx-location-match-visible",
+  "version": "0.1.0",
+  "description": "nginx location match visible",
+  "main": "server.js",
+  "scripts": {
+    "build": "webpack --progress --verbose --colors --display-error-details",
+    "test": "make test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/detailyang/nginx-location-match-visible.git"
+  },
+  "keywords": [
+    "nginx",
+    "visible",
+    "location"
+  ],
+  "author": "detailyang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/detailyang/nginx-location-match-visible/issues"
+  },
+  "homepage": "https://github.com/detailyang/nginx-location-match-visible#readme",
+  "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "exports-loader": "^0.6.3",
+    "imports-loader": "^0.6.5",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
