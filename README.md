@@ -44,4 +44,57 @@ If the longest matching prefix location has the “^~” modifier then regular e
 >
 Also, using the “=” modifier it is possible to define an exact match of URI and location. If an exact match is found, the search terminates. For example, if a “/” request happens frequently, defining “location = /” will speed up the processing of these requests, as search terminates right after the first comparison. Such a location cannot obviously contain nested locations.
 
+Let's explain something about this:
+
+1. the exact match is the best priority
+2. the prefix match is second is the second, but there are two type prefix match like `^~` and `/`, if you are ^~, nginx will skip regular match else it will continue to match all the regular match.
+
+a little fake code as the following:
+
+````python
+def match(uri):
+  rv = NULL
+
+  if uri in exact_match:
+    return exact_match[uri]
+  
+  if uri in prefix_match:
+    if prefix_match[uri] is '^~':
+      return prefix_match[uri]
+    else:
+      rv = prefix_match[uri]
+    
+  if uri in regex_match:
+    return regex_match[uri]
+  
+  return rv
+````
+
+Let’s illustrate the above by an example:
+
+````
+location = / {
+    [ configuration A ]
+}
+
+location / {
+    [ configuration B ]
+}
+
+location /documents/ {
+    [ configuration C ]
+}
+
+location ^~ /images/ {
+    [ configuration D ]
+}
+
+location ~* \.(gif|jpg|jpeg)$ {
+    [ configuration E ]
+}
+````
+if we are requesting "/index.html", it will match
+
+
+
 extra_match(alpha)->inclusive(alpha)->reg(location order)->name(alpha)->noname(location order)
