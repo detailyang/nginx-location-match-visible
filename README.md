@@ -31,6 +31,7 @@ Table of Contents
 
 This project aims to help guys to understand how does nginx location match work. Wish you can learn something from this project :grin:
 
+![nginx location visible](https://raw.githubusercontent.com/detailyang/nginx-location-match-visible/master/docs/images/nginx-location-visible.gif)
 #Rough
 
 In [Nginx Website](http://nginx.org/en/docs/http/ngx_http_core_module.html#location), it include these docs as the following:
