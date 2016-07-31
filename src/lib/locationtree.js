@@ -387,12 +387,12 @@ function ngx_http_core_find_location(uri, static_locations, regex_locations, nam
 
 function ngx_http_find_static_location(uri, node, track) {
   let len = uri.length;
+  let rv = null;
 
   for (;;) {
     if (node == null) {
-      return null;
+      return rv;
     }
-
     if (track) track(node.inclusive ? node.inclusive.id : node.exact.id);
     let n = len <= node.len ? len : node.len;
     let rc = ngx_filename_cmp(uri, node.name, n);
@@ -403,6 +403,7 @@ function ngx_http_find_static_location(uri, node, track) {
     }
     if (len > node.len) {
       if (node.inclusive) {
+        rv = node.inclusive;
         node = node.tree;
         continue;
       }
