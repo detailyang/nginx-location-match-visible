@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Nginx Location Match Visible</title>
+    <style type="text/css">
+         body { padding: 25px; margin: 0px; }
+        .clearfix { *zoom: 1;}
+        .clearfix:after{ content: ""; display: block; height: 0; visibility:hidden; clear: both;}
+        .inner { width: 100%; }
+        #header{ height: 90px; margin: 0 auto;}
+        #body{ margin: 0 auto;}
+        #aside{ float: left; width: 666px;}
+        #main{ margin-left: 666px;}
+        #footer{ height: 90px; margin: 0 auto;}
+        textarea { background-color: #002b36; color: #b58900;}
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
+  </head>
+  <body style="background-color:#002b36">
+  <div>
+  <div id="wrapper">
+        <div id="header">
+            <a class="github-fork-ribbon" href="https://github.com/detailyang/nginx-location-match-visible" title="Fork me on GitHub">Fork me on GitHub</a>
+            <div style="text-align: center">
+                <input id="uri" type="" name="uri" placeholder="input uri like /abc">
+                <button id="go">Go</button>
+            </div>
+        </div>
+        <div id="body" class="clearfix">
+            <div id="aside">
+                <canvas id="tree" height="1000" width="666"></canvas>
+            </div>
+            <div id="main">
+                <div>
+                    <textarea class="inner" id="conf" rows="40" cols="20">
+# you can copy you conf on this area:)
+location /a {}
+location /b {}
+location ^~ /ab {}
+location ~* /AB {}
+location  ~ /de {}
+location = /c {}
+                    </textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+    <script src="/static/bundle.js"></script>
+  </body>
+</html>

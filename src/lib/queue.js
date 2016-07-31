@@ -128,6 +128,29 @@ function ngx_queue_pprint(queue) {
   }
 }
 
+function ngx_queue_middle(queue) {
+  let middle = ngx_queue_head(queue);
+
+  if (middle == ngx_queue_last(queue)) {
+    return middle;
+  }
+
+  let next = ngx_queue_head(queue);
+  for (;;) {
+    middle = ngx_queue_next(middle);
+    next = ngx_queue_next(next);
+
+    if (next == ngx_queue_last(queue)) {
+      return middle;
+    }
+
+    next = ngx_queue_next(next);
+    if (next == ngx_queue_last(queue)) {
+      return middle;
+    }
+  }
+}
+
 
 module.exports = {
   Queue,
@@ -145,5 +168,6 @@ module.exports = {
   ngx_queue_split,
   ngx_queue_add,
   ngx_queue_sort,
+  ngx_queue_middle,
   ngx_queue_pprint,
 }
