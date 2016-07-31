@@ -154,6 +154,6 @@ Author
 
 License
 -------
-ngx_http_updown is licensed under the [MIT] license.
+nginx-location-match-visible is licensed under the [MIT] license.
 
 [MIT]: https://github.com/detailyang/ybw/blob/master/licenses/MIT
