@@ -136,7 +136,7 @@ This project consist of the three parts:
 * Parse the nginx conf:
   nginx conf parser are not implement like compiler, it's just string  manipulate. And now it cannot support rewrite directive.
 * Construct the nginx static location tree、regular location list and Implement the nginx_find_location method:
-  it translate nginx c code to js code by manually
+  it translate nginx c code to js code by manual
 
 * Render nginx match process:
   now render the process is deal with by canvas api, it could be implmented better actually. 
