@@ -29,7 +29,7 @@ Table of Contents
 
 #Purpose
 
-This project aims to help guys to understand how does nginx location match work. Wish you can learn something from this project :grin:
+This project aims to help guys understand how does nginx location match work. Wish you can learn something from this project :grin:
 
 ![nginx location visible](https://raw.githubusercontent.com/detailyang/nginx-location-match-visible/master/docs/images/nginx-location-visible.gif)
 #Rough
