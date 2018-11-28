@@ -105,7 +105,7 @@ location ~* \.(gif|jpg|jpeg)$ {
     [ configuration E ]
 }
 ````
-* if we are requesting "/index.html", it will match `configureation B`.
+* if we are requesting "/index.html", it will match `configuration B`.
 * if we are requesting "/1.jpg", it will find `configuration B` at first, then regular match `configuration E` finally.
 * if we are requesting "/images/xxx", it will match `configuration D`, but never match regular location becasuse of ^~
 
