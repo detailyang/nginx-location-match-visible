@@ -105,9 +105,9 @@ location ~* \.(gif|jpg|jpeg)$ {
     [ configuration E ]
 }
 ````
-* if we are requesting "/index.html", it will match `configureation B`.
+* if we are requesting "/index.html", it will match `configuration B`.
 * if we are requesting "/1.jpg", it will find `configuration B` at first, then regular match `configuration E` finally.
-* if we are requesting "/images/xxx", it will match `configuration D`, but never match regular location becasuse of ^~
+* if we are requesting "/images/xxx", it will match `configuration D`, but never match regular location because of ^~
 
 #Detail
 Let’s talk about the something about nginx location data struct when nginx match location.
@@ -139,7 +139,7 @@ This project consist of the three parts:
   it translate nginx c code to js code by manual
 
 * Render nginx match process:
-  now render the process is deal with by canvas api, it could be implmented better actually. 
+  now render the process is deal with by canvas api, it could be implemented better actually. 
 
 The code of this project is a little dirty but workaround. It's enough to help guys to know how to work when nginx match location.
 
